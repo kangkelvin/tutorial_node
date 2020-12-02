@@ -1,0 +1,11 @@
+<launch>
+
+    <arg name="publishing_interval" default="1.0" doc="publishing interval of the tutorial node" />
+    <arg name="number_incrementer" default="3.14159265" doc="value of the adder"/>
+
+    <node pkg="tutorial_node" type="tutorial_node" name="tutorial_node" output="screen">
+        <param name="publishing_interval" value="$(arg publishing_interval)"/>
+        <param name="number_incrementer" value="$(arg number_incrementer)"/>
+    </node>
+
+</launch>
