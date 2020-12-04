@@ -48,22 +48,35 @@ When your build is successful, you should see this on your terminal
 
 >:bulb: Repeat this process every time you make changes to your code, including when you add another ros package to your system, or making small changes inside your source code.
 ---
-## What to do next?
-You need to write your own ROS node using C++
+## What am I suppose to do?
 
-You are going to make a simple substractor and multiplier node. 
+1. Fill up all the TODO inside all these files in this order:
+```bash
+  include/tutorial_node.h
+  src/tutorial_node.cpp
+  CMakeLists.txt
+  package.xml
+  launch/tutorial_node.launch
+```
 
-There are some of the requirements:
-1. Subscribe to the `/adder_out` and the `/counter_out` topic
-2. Set the `substractorValue` of `5` as a ros param.
-3. Set the `multiplyFactor` of `5.6` also as a ros param.
-4. Substract the data you recieve from the `/adder_out` message with the `substractorValue`.
-5. Multiply the data you recieved from the `/counter_out` message with the `multiplyFactor`.
-6. Publish the adder to the `/adder_result` topic.
-7. Publish the multiply result to `/multiply_result` topic.
-8. [**OPTIONAL**] Generate a custom message to publish both of the messages simultaneously under `/calculate_both` message.
+2. Go back to your workspace directory and try to run `catkin_make`, debug your code until it is successfully compiled
 
-Make sure that the data type for the publiser should be `UInt8` and the multiplier should be `Float64`.
+3. Launch the node
+
+4. Your node is expecting an input at the topic `/adder_in`, manually publish a msg at this topic using `rostopic pub` at 10Hz
+
+5. Use the ros tools you have learnt to understand what is going on with the node
+
+6. Afterwards, write your own ROS node using C++. You are going to make a simple substractor and multiplier node. 
+
+   Here are some of the requirements:
+
+   1. Subscribe to the `/adder_out` and the `/counter_out` topic
+   2. Create a rosparam `substractorValue` with value of `5`
+   3. Create a rosparam `multiplyFactor` with value `5.6` 
+   4. Subtract the data you receive from the `/adder_out` message with the `substractorValue`. Publish the result on the topic `/result/subtract` as `std_msgs::Float64` at every `/adder_out` callback.
+   5. Multiply the latest data you receive from the `/counter_out` message with the `multiplyFactor` and publish it on the topic `/result/multiply` as the linear x velocity in  `geometry_msgs::Twist` at 5Hz
+   6. [**OPTIONAL**] Generate a custom message to publish both of the messages simultaneously under `/calculate_both` message.
 
 ---
 ## Useful ROS Tools
@@ -115,7 +128,7 @@ roswtf
 ROS uses messages to encapsluate data that is trasnferred between ros nodes.
 There are many many different data types in ros. There are [native datatypes](http://wiki.ros.org/msg).
 <a href="https://ibb.co/rm8WGWC"><img src="https://i.ibb.co/QfS5F52/Screenshot-from-2020-12-02-18-10-08.png" alt="Screenshot-from-2020-12-02-18-10-08" border="0"></a>
- 
+
 There are also packaged datatypes that are more specialized. You should look it up here. [common messages](http://wiki.ros.org/common_msgs?distro=melodic).
 
 ### 7. [rosrun](http://wiki.ros.org/rosbash#rosrun)

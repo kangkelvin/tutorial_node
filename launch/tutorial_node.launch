@@ -1,10 +1,13 @@
 <launch>
 
-    <arg name="publishing_interval" default="1.0" doc="publishing interval of the tutorial node" />
-    <arg name="number_incrementer" default="3.14159265" doc="value of the adder"/>
+    <!-- TODO: change the argument name to "publishing_interval" and default value to "1.0" -->
+    <arg name="<insert value here>" default="<insert value here>" doc="publishing interval of the tutorial node" />
+    <arg name="number_incrementer" default="20.0" doc="value of the adder"/>
 
-    <node pkg="tutorial_node" type="tutorial_node" name="tutorial_node" output="screen">
-        <param name="publishing_interval" value="$(arg publishing_interval)"/>
+    <!-- TODO: change the package name and executible name to the one you defined in CMakeLists.txt -->
+    <node pkg="<insert value here>" type="<insert value here>" name="tutorial_node" output="screen">
+        <!-- TODO: set the param "publishing_interval" value as the argument "publishing_interval" -->
+        <param name="<insert value here>" value="$(arg <insert value here>)"/>
         <param name="number_incrementer" value="$(arg number_incrementer)"/>
     </node>
 
