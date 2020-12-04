@@ -26,8 +26,6 @@ Clone the repository to your local machine
 git clone https://github.com/a-i-lab/tutorial_node
 ```
 
-
-
 ## Building and Compiling ROS node
 catkin_make is a build automation tool that is used to build and compile ros nodes.
 
@@ -78,8 +76,14 @@ You can use rviz to visualize 3d maps, lidar readings, camera output, transforma
 ![image](http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics?action=AttachFile&do=get&target=rqt_plot.png)
 rqt_plot is a gui application that allow syou to visualize numeric values from your ros topics.
 
+### 3. [rqt_graph](http://wiki.ros.org/rqt_graph)
+![image](http://wiki.ros.org/rqt_graph?action=AttachFile&do=get&target=snap_rqt_graph_moveit_demo.png)
+rqt_graph is a ROS visualization tool that allows you to see how the topics are connected from one node to another. 
+```
+rqt_graph
+```
 
-### 3. rostopic
+### 4. [rostopic](http://wiki.ros.org/rostopic)
 1. rostopic pub
 rostopic pub allows you to independently publish an information to a topic. 
 ```bash
@@ -98,22 +102,61 @@ rostopic echo will list the values that is currently inside the ros param server
 rostopic echo <topic_name>
 ```
 
-4. For further info, look at the ros wiki page for [rostopic](http://wiki.ros.org/rostopic)
+For further info on `rostopic`, look at the ros wiki page for the topic linked in the title of this section
 
-
-
-### 4. [roswtf](http://wiki.ros.org/roswtf)
+### 5. [roswtf](http://wiki.ros.org/roswtf)
 roswtf allows you to quickly check for errors in your ros code.
 Just simply type:
 ```bash
 roswtf
 ```
 
-### 5. [rosmsg](http://wiki.ros.org/Messages)
+### 6. [rosmsg](http://wiki.ros.org/Messages)
 ROS uses messages to encapsluate data that is trasnferred between ros nodes.
 There are many many different data types in ros. There are [native datatypes](http://wiki.ros.org/msg).
 <a href="https://ibb.co/rm8WGWC"><img src="https://i.ibb.co/QfS5F52/Screenshot-from-2020-12-02-18-10-08.png" alt="Screenshot-from-2020-12-02-18-10-08" border="0"></a>
  
 There are also packaged datatypes that are more specialized. You should look it up here. [common messages](http://wiki.ros.org/common_msgs?distro=melodic).
 
-###:exclamation: Read the ros wiki for in depth for other ROS related information [here](http://wiki.ros.org/)
+### 7. [rosrun](http://wiki.ros.org/rosbash#rosrun)
+rosrun is a rosbash command that allows you to run executables from the your ros package.
+```bash
+rosrun <package> <executable>
+```
+
+### 8. [roslaunch](http://wiki.ros.org/roslaunch)
+roslaunch is a command that allows you to run ros packages from a ROS launch file. The launch file has the extension `.launch` and iniside, you can put data values for the ros parameters. 
+
+roslaunch will also start roscore if no roscore is started on the machine. roscore is essentially, a ros launch tool to start the core of the ROS system. You can look into it more [here](http://wiki.ros.org/roscore)
+
+### 9. [rosbag](http://wiki.ros.org/rosbag)
+rosbag is a ros simulation tool that allows you to record and play back to ROS topics. rosbag is useful for testing you ros nodes, and collecting real time data.
+#### Playing a rosbag file
+```
+rosbag play <bagfile(s)>
+```
+There are several flags that you can use in the rosbag command, that you can see [here](http://wiki.ros.org/rosbag/Commandline#play)
+#### Recording a rosbag file
+```
+rosbag record <topic_names>
+```
+There are flags that you can set in the rosbag command, you can see them [here](http://wiki.ros.org/rosbag/Commandline#record)
+
+### 10. [rosnode](http://wiki.ros.org/rosnode)
+rosnode is a useful tool to obtain information about the node. rosnode allows you to see the nodes that are running in your ros environment, as well as to kill the node processes.
+#### 1. rosnode info - to display the status of a node (subscriber, publisher)
+```
+rosnode info /node_name
+```
+#### 2. rosnode list - to list all the running nodes
+```
+rosnode list 
+```
+#### 3. rosnode kill - to terminate a node
+```
+rosnode kill <node_name>
+```
+For further info on `rosnode`, look at the ros wiki page for the topic linked in the title of this section
+
+
+exclamation: Read the ros wiki for in depth for other ROS related information [here](http://wiki.ros.org/)
