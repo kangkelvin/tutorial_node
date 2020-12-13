@@ -1,83 +1,79 @@
 #include "tutorial_node.h"
 
-/** TODO: initialise the variable "numCount_" to 0 in the constructor**/
-TutorialNode::TutorialNode() : nodeHandle_(), privateNodeHandle_("~"), numCount_(<insert value here>)
+TutorialNode::TutorialNode() : nodeHandle_(), privateNodeHandle_("~"), numCount_(0)
 {
   // initialize the ros parameters
-  /** TODO: change the name of the parameter to "publishing_interval" and the default value to 1 **/
-  privateNodeHandle_.param("<insert value here>", publishingInterval_, <insert value here>);
-  privateNodeHandle_.param("number_incrementer", numberIncrementer_, 3.0);
+  privateNodeHandle_.param("publishing_interval", publishingInterval_, 1.0);
+  // TODO: declared variable to hold the variable on how much to increment by, read the ros param here
+  // and put into your declared variable
 
   // initalize timers
-  /** TODO: change the timer frequency by adjusting the timer interval to "publishingInterval_"**/
-  countTimer_ = nodeHandle_.createTimer(ros::Duration(<insert value here>), &TutorialNode::incrementCount, this);
+  // TODO: we just read a ros param on our desired publishing interval for the counter, put the param here
+  // TODO: whenever the timer ticks, we want to run the function to increment the counter, put the function here
+  countTimer_ = nodeHandle_.createTimer(ros::Duration(/*******/), &TutorialNode::/********/, this);
 
-  /* initialize the topic and service publisher and subscriber */
+  /* initialize the publisher and subscriber */
   // topic subscriber
-  /** TODO: change topic name of the subscriber to "/adder_in" and put the right callback function of adderCallback_()**/
-  countSubscriber_ = nodeHandle_.subscribe("<insert value here>", 1, <insert value here>, this);
-  // service publisher
-  countResetService_ = nodeHandle_.advertiseService("reset_count", &TutorialNode::resetCount_, this);
+  // TODO: this node subscribes to /adder_in, define the subscriber here
+  myNameSubscriber_ = nodeHandle_.subscribe("/my_name", 5, &TutorialNode::myNameCallback, this);
+
   // topic publisher
-  /** TODO: change topic name of the publisher to "/counter_out"**/
-  countPublisher_ = nodeHandle_.advertise<std_msgs::Int32>("<insert value here>", 1);
+  // TODO: this node publishes on /counter_out, define the publisher here
   adderPublisher_ = nodeHandle_.advertise<std_msgs::Float32>("/adder_out", 1);
+}
+
+// Example of a cool algorithm that you will run
+double TutorialNode::doCoolStuff(double num1, double num2)
+{
+  num1 += num2;  // adds the subscribed data
+  ROS_INFO("The sum is = [%f]", num1);
+
+  return num1;
 }
 
 /**
  * This callback method is called when the node recieves a count data
- *
- * @param &msg is the topic received that triggers this function
+ * @param &msg is the timer action that triggers the event
  */
-void TutorialNode::adderCallback_(const std_msgs::Float32::ConstPtr& msg)
+// TODO: define your adder_in callback here
+void TutorialNode::/*******/(const std_msgs::Float32::ConstPtr& msg)
 {
-  /** TODO: take the value of msg and store it in the variable numbersRecieved**/
-  float numberRecieved = <insert code here>;  // extracts the data from the message
-  ROS_INFO("The number recieved is %f", numberRecieved);
+  double numberReceived = msg->data;  // extracts the data from the message
 
+  ROS_INFO("The number recieved is %f", numberReceived);
   ROS_INFO("Adding the number recieved by %f", numberIncrementer_);
 
-  numberRecieved += numberIncrementer_;  // adds the subscribed data
-  ROS_INFO("The sum is = [%f]", numberRecieved);
+  // TODO: pass your subscribed message and ros param to your cool algorithm
+  double output = /*************/;
 
-  numberAdderMessage_.data = numberRecieved;     // puts the data to the message.
+  numberAdderMessage_.data = output;             // puts the data to the message.
   adderPublisher_.publish(numberAdderMessage_);  // publishes the message to the topic
 }
 
 /**
- * This method publishes the count to the ros param server
+ * This method publishes the count
  */
 void TutorialNode::publishCount()
 {
   ROS_INFO("Publishing counter... [%d]", numCount_);
-  numberCountMessage_.data = numCount_;          // inserts the data to the ros message
-  /** TODO: publish the message numberCountMessage_ through the publisher countPublisher_**/
-  countPublisher_.publish(<insert code here>);  // the publisher publishes the message and its contents.
+  // TODO: publish the counter
 }
 
 /**
  * This method increments the count by 1 every time the timer triggers an event
  */
-  /** TODO: put the appropriate function parameters**/
-void TutorialNode::incrementCount(<insert code here>)
+void TutorialNode::incrementCount(const ros::TimerEvent&)
 {
   numCount_ += 1;
   publishCount();
 }
 
 /**
- * This method resets the number of counts if the exampleService service is called
- * The return type of a ros service must be a boolean.
+ * This method reads the topic and store it to a class member variable
  */
-bool TutorialNode::resetCount_(tutorial_node::exampleServiceRequest& req, tutorial_node::exampleServiceResponse& res)
+void TutorialNode::myNameCallback(const std_msgs::String::ConstPtr& msg)
 {
-  ROS_INFO("Resetting count");
-  if (req.reset_counter)
-  {
-    numCount_ = 0;
-  }
-  ROS_INFO("Count has been reset to %d", numCount_);
-  return true;
+  // TODO: extract the string from the message and put it into the member variable myName_
 }
 
 /**
@@ -86,7 +82,7 @@ bool TutorialNode::resetCount_(tutorial_node::exampleServiceRequest& req, tutori
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "tutorial_node");
-  TutorialNode node;
+  // TODO: create the object of your class
   ros::spin();
   return 0;
 }

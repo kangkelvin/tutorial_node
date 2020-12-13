@@ -1,13 +1,6 @@
 # Tutorial Node
 This is the tutorial node to get you started writing your own node using ROS in C++. This node is a template that you should follow when writing your own ROS code.
 
----
-## What this node does
-1. Prints out a `counter` that works based on a timer.
-2. Adds the value from the `/adder_in` topic.
-3. Outputs the counter value in the `/counter_out` topic
-4. Outputs the adder result to the `/adder_out` topic
-
 ## Getting Started
 Make sure to install ROS in your system by following the instruction in this [website](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment).The link will guide you on how to install ROS and create a workspace folder in your system
 >:bulb: Follow these steps carefully step by step, failure in doing so will end up in a faulty system.
@@ -15,7 +8,7 @@ Make sure to install ROS in your system by following the instruction in this [we
 Match the tutorials with your system specification (i.e. using **Ubuntu 18.04, ROS Melodic**)
 
 ## Cloning the repository
-To install this node, you shold clone it from the github repostiotory in this [link](https://github.com/a-i-lab/tutorial_node).
+To install this node, you should clone it from the github repository in this [link](https://github.com/a-i-lab/tutorial_node).
 
 Navigate to your `catkin_ws/src` folder
 ```
@@ -29,7 +22,7 @@ git clone https://github.com/a-i-lab/tutorial_node
 ## Building and Compiling ROS node
 catkin_make is a build automation tool that is used to build and compile ros nodes.
 
-To compile a workspace, let's say your `catkin_make` folder, you type in this command in your `catkin_ws` folder.
+To compile a workspace, let's say your `catkin_ws` folder, you type in this command in your `catkin_ws` folder.
 
 When you are inside a node directory, 
 ```
@@ -48,6 +41,13 @@ When your build is successful, you should see this on your terminal
 
 >:bulb: Repeat this process every time you make changes to your code, including when you add another ros package to your system, or making small changes inside your source code.
 ---
+## What the tutorial_node suppose to do
+
+1. Prints out a `counter` that works based on a timer.
+2. Adds the value from the `/adder_in` topic.
+3. Outputs the counter value in the `/counter_out` topic
+4. Outputs the adder result to the `/adder_out` topic
+
 ## What am I suppose to do?
 
 1. Fill up all the TODO inside all these files in this order:
@@ -102,6 +102,11 @@ rostopic pub allows you to independently publish an information to a topic.
 ```bash
 rostopic pub <topic_name> <message_type> <message_attributes>
 ```
+For example:
+```bash
+rostopic pub -r 15 /adder_in std_msgs/Float32 "data: 1.25"
+```
+This command will publish 1.25 on the topic "/adder_in" at a rate of 15Hz
 
 2. rostopic list
 rostopic list will list down all the active topics that are published or subscribed.
@@ -152,6 +157,10 @@ There are several flags that you can use in the rosbag command, that you can see
 #### Recording a rosbag file
 ```
 rosbag record <topic_names>
+```
+For example:
+```
+rosbag record adder_in adder_out counter_in
 ```
 There are flags that you can set in the rosbag command, you can see them [here](http://wiki.ros.org/rosbag/Commandline#record)
 

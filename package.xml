@@ -1,25 +1,19 @@
 <?xml version="1.0"?>
 <package format="2">
-  <!-- TODO: ensure the name is the same as your CMakeLists.txt project name-->
-  <name>whatever you want</name>
+  <!-- TODO: name your ros package according to CMakeLists.txt -->
+  <name><!-- ############ --></name>
   <version>0.0.0</version>
-  <!-- TODO: fill up generic descriptions-->
-  <description>whatever you want</description>
-  <maintainer email="your email here">your-name-here</maintainer>
-  <license>Whatever you want</license>
+  <description>my awesome tutorial node</description>
+  <maintainer email="kelvinkang@cmu.edu">kelvinkang</maintainer>
+  <license>Confidential and Restricted</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
 
-  <!-- TODO: we are using std_msgs so we have to put the build_depend and exec_depend for std_msgs -->
+  <!-- TODO: since you are using std_msgs, add it into the build and exec depends -->
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
-  <build_depend>message_generation</build_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
-  <exec_depend>message_runtime</exec_depend>
-
-  <!-- TODO: pretend that we are using this ros package http://wiki.ros.org/velodyne How should we add it inside? -->
-
 </package>

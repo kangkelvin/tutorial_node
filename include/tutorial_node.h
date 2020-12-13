@@ -1,23 +1,21 @@
-#pragma once
-// Put the preprocessor directives and include commands here
+// TODO: basic C++ discipline, add include guard here
 
 // Include files for ROS libraries.
 #include <ros/console.h>
-/** TODO: add ros.h include **/
+// TODO: we are using ROS, so add the ros.h include here
 #include <ros/timer.h>
 #include <std_msgs/Float32.h>
-#include <std_msgs/Int32.h>
-
-// Include generated message and service file headers.
-#include <tutorial_node/exampleService.h>
-#include <tutorial_node/exampleMessage.h>
+// TODO: we are using ros standard messages Int32, so include it here
+#include <std_msgs/String.h>
 
 // Include files for C++ libraries
 #include <math.h>
 #include <algorithm>
 #include <chrono>
 #include <iostream>
-#include <string>
+// TODO: we are using std_msgs/String, but we also need to use normal C string. Add include here
+
+// TODO: C++ discipline, don't use "using namespace" unnecessarily
 
 class TutorialNode
 {
@@ -27,27 +25,25 @@ public:
 private:
   // variables for ros interactions
   ros::NodeHandle nodeHandle_, privateNodeHandle_;
-  ros::Subscriber countSubscriber_;
-  ros::Publisher countPublisher_;
-  /** TODO: add another ros Publisher with name "adderPublisher_" **/
+  ros::Subscriber countSubscriber_, myNameSubscriber_;
+  // TODO: we have two publishers, one for counter and one for adder, add the missing one here
+  ros::Publisher adderPublisher_;
   ros::Timer countTimer_;
-  ros::ServiceServer countResetService_;
 
   std_msgs::Int32 numberCountMessage_;
-  std_msgs::Float32 numberAdderMessage_;
+  // TODO: we have two things to publish, add the missing message here
 
-  // declare constants
-  const double pi = M_PI;
-  
   // variable declaration for member attributes
   double publishingInterval_;
-  double numberIncrementer_;
-  /** TODO: add a member variable of type integer and name "numCount_" **/
+  // TODO: we need a variable to hold the variable on how much to increment by, declare it here
+  int numCount_;
   int numResets_;
+  std::string myName_;
 
   // function declaration for member functions
-  void adderCallback_(const std_msgs::Float32::ConstPtr& msg);
-  /** TODO: declare a function with name "publishCount" that has no input argument and returns void **/
+  double doCoolStuff(double num1, double num2);
+  // TODO: we need a callback function to receive the adder_in messages, declare it here
+  void myNameCallback(const std_msgs::String::ConstPtr& msg);
+  void publishCount();
   void incrementCount(const ros::TimerEvent&);
-  bool resetCount_(tutorial_node::exampleServiceRequest& req, tutorial_node::exampleServiceResponse& res);
 };
