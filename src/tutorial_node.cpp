@@ -3,6 +3,7 @@
 TutorialNode::TutorialNode() : nodeHandle_(), privateNodeHandle_("~"), numCount_(0)
 {
   // initialize the ros parameters
+  // privateNodeHandle_.param("name_of_rosparam", memberVariableToStoreParam_, default_value_of_param)
   privateNodeHandle_.param("publishing_interval", publishingInterval_, 1.0);
   // TODO: declared variable to hold the variable on how much to increment by, read the ros param here
   // and put into your declared variable
@@ -40,23 +41,16 @@ void TutorialNode::/*******/(const std_msgs::Float32::ConstPtr& msg)
 {
   double numberReceived = msg->data;  // extracts the data from the message
 
-  ROS_INFO("The number recieved is %f", numberReceived);
-  ROS_INFO("Adding the number recieved by %f", numberIncrementer_);
+  // TODO: use ROS_INFO to print out the number you received and the amount to increment by
+  ROS_INFO("The number recieved is %f", /*************/);
+  ROS_INFO("Adding the number recieved by %f", /*************/);
 
   // TODO: pass your subscribed message and ros param to your cool algorithm
   double output = /*************/;
 
-  numberAdderMessage_.data = output;             // puts the data to the message.
-  adderPublisher_.publish(numberAdderMessage_);  // publishes the message to the topic
-}
-
-/**
- * This method publishes the count
- */
-void TutorialNode::publishCount()
-{
-  ROS_INFO("Publishing counter... [%d]", numCount_);
-  // TODO: publish the counter
+  // TODO: pass the output from your cool algorithm to the adder message and publish the message
+  /*******/.data = output;             // puts the data to the message.
+  adderPublisher_.publish(/*******/);  // publishes the message to the topic
 }
 
 /**
@@ -66,6 +60,15 @@ void TutorialNode::incrementCount(const ros::TimerEvent&)
 {
   numCount_ += 1;
   publishCount();
+}
+
+/**
+ * This method publishes the count
+ */
+void TutorialNode::publishCount()
+{
+  ROS_INFO("Publishing counter... [%d]", numCount_);
+  // TODO: publish the counter
 }
 
 /**

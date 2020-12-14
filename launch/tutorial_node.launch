@@ -1,7 +1,8 @@
 <launch>
 
-    <arg name="publishing_interval" default="1.0" doc="publishing interval of the tutorial node" />
-    <arg name="number_incrementer" default="3.14159265" doc="value of the adder"/>
+    <!-- TODO: create an argument for the number to increment by -->
+    <arg name="publishing_interval" default="1.0" doc="publishing interval of the tutorial node in secs" />
+    <arg name="##################" default="3.14159265" doc="value of the adder"/>
 
     <!-- TODO: put the node you created here -->
     <node pkg="###############" type="#####################" name="##################" output="screen">

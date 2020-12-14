@@ -13,7 +13,6 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
-// TODO: we are using std_msgs/String, but we also need to use normal C string. Add include here
 
 // TODO: C++ discipline, don't use "using namespace" unnecessarily
 

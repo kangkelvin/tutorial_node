@@ -43,10 +43,11 @@ When your build is successful, you should see this on your terminal
 ---
 ## What the tutorial_node suppose to do
 
-1. Prints out a `counter` that works based on a timer.
-2. Adds the value from the `/adder_in` topic.
-3. Outputs the counter value in the `/counter_out` topic
-4. Outputs the adder result to the `/adder_out` topic
+1. Subscribes to `/adder_in` topic (`std_msgs::Float32`)
+2. Have a rosparam `number_incrementer` with value of `2.1`
+3. Adds the `number_incrementer` value with the `/adder_in` topic and publish it on the `/adder_out` topic (`std_msgs::Float32`)
+4. Increment a counter at a set interval set by the rosparam ``publishing_interval` and publish the counter result on the `/counter_out` topic (`std_msgs::Int32`)
+5. Subscribes to `/my_name` topic (`std_msgs::String`) and store the value in the member variable `myName_`
 
 ## What am I suppose to do?
 
@@ -63,7 +64,11 @@ When your build is successful, you should see this on your terminal
 
 3. Launch the node
 
-4. Your node is expecting an input at the topic `/adder_in`, manually publish a msg at this topic using `rostopic pub` at 10Hz
+4. Your node is expecting an input at the topic `/adder_in`, manually publish a msg at this topic using `rostopic pub` at 10Hz with this command
+
+   ```bash
+   rostopic pub -r 10 /adder_in std_msgs/Float32 "data: 10.0"
+   ```
 
 5. Use the ros tools you have learnt to understand what is going on with the node
 

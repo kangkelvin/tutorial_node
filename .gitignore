@@ -59,9 +59,6 @@ qtcreator-*
 # Emacs
 .#*
 
-# Bagfiles
-*.bag
-
 # Catkin custom files
 CATKIN_IGNORE
 .catkin_workspace
