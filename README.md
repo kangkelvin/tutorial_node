@@ -46,7 +46,7 @@ When your build is successful, you should see this on your terminal
 1. Subscribes to `/adder_in` topic (`std_msgs::Float32`)
 2. Have a rosparam `number_incrementer` with value of `2.1`
 3. Adds the `number_incrementer` value with the `/adder_in` topic and publish it on the `/adder_out` topic (`std_msgs::Float32`)
-4. Increment a counter at a set interval set by the rosparam ``publishing_interval` and publish the counter result on the `/counter_out` topic (`std_msgs::Int32`)
+4. Increment a counter at a set interval set by the rosparam `publishing_interval` and publish the counter result on the `/counter_out` topic (`std_msgs::Int32`)
 5. Subscribes to `/my_name` topic (`std_msgs::String`) and store the value in the member variable `myName_`
 
 ## What am I suppose to do?
